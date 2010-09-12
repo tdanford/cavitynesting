@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}{{ graphtitle }}{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+function draw() { 
+	var canvas = document.getElementById('graphcanvas');
+	if (canvas.getContext) { 
+		var ctx = canvas.getContext('2d');
+		{{ graphicscommands }}
+	}
+}
+</script>
+{% endblock %}
+
+{% block style %}
+<style type="text/css">
+canvas { border : 1px solid black; background : white; }
+</style>
+{% endblock %}
+
+{% block body %}
+
+<canvas id="graphcanvas" width="500" height="500"></canvas>
+
+{% endblock %}

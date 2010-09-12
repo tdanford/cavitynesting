@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Visit Index{% endblock %}
+
+{% block body %}
+
+<a href="/cavitynesting/">Top Level</a><br>
+
+<p>
+<table>
+<tr>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/plots/">Plots</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/trees/">Trees</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/cavities/">Cavities</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/nests/">Nests</a>
+</td>
+<td bgcolor="pink">
+	<b>Visits</b>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/randomtrees/">Random Trees</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/transects/">Transects</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/transecttrees/">Transect Trees</a>
+</td>
+</tr>
+</table>
+</p>
+
+<hr>
+{% if all_values %}
+
+<h3>Visit List</h3>
+<table>
+<tr>
+<td><b>Date</b></td>
+<td><b>Nest</b></td>
+<td><b>Cavity</b></td>
+<td><b>Tree</b></td>
+<td><b>Plot</b></td>
+
+<td><b>Observer</b></td>
+<td><b>Eggs</b></td>
+<td><b>Nestlings</b></td>
+<td><b>Fledglings</b></td>
+<td><b>Fledged?</b></td>
+<td><b>Status</b></td>
+<td><b>Stage</b></td>
+
+<td><b>Notes</b></td>
+</tr>
+
+{% for value in all_values %}
+<tr>
+<td align=center bgcolor="#e0e0ff"> <a href="/cavitynesting/visit/{{value.id }}">{{ value.date }}</a> </td>
+<td> <a href="/cavitynesting/nest/{{ value.nest.id }}/">{{ value.nest.nestid }}</a></td>
+<td> <a href="/cavitynesting/cavity/{{ value.nest.cavity.id }}/">{{ value.nest.cavity.cavityid }}</a></td>
+<td> <a href="/cavitynesting/tree/{{ value.nest.cavity.tree.id }}/">{{ value.nest.cavity.tree.treeid }}</a></td>
+<td> <a href="/cavitynesting/plot/{{ value.nest.cavity.tree.plot.id }}/">{{ value.nest.cavity.tree.plot.plotid }}</a></td>
+
+<td> {{ value.observerinitials }}</a></td>
+<td> {{ value.eggs }}</a></td>
+<td> {{ value.nestlings }}</a></td>
+<td> {{ value.fledglings }}</a></td>
+<td> {{ value.fledgedcertainty }}</a></td>
+<td> {{ value.status }}</a></td>
+<td> {{ value.stage }}</a></td>
+
+<td> {{ value.displaynotes }}</a></td>
+</tr>
+{% endfor %}
+</table>
+
+<p><a href="/cavitynesting/visits/?type=csv">CSV</a></p>
+
+{% endif %}
+
+{% endblock %}

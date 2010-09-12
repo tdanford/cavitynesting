@@ -1,0 +1,12 @@
+<html>
+<head>
+<title>{% block title %}Cavity Nesting Birds Project{% endblock %}</title>
+</head>
+<body bgcolor="white">
+{% if errormsg %}
+<font color="red"><i>{{ errormsg }}</i></font><br>
+{% endif %}
+{% block body %}
+{% endblock %}
+</body>
+</html>

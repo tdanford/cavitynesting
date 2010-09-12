@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Cavity Index{% endblock %}
+
+{% block body %}
+
+<a href="/cavitynesting/">Top Level</a><br>
+
+<p>
+<table>
+<tr>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/plots/">Plots</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/trees/">Trees</a>
+</td>
+<td bgcolor="pink">
+	<b>Cavities</b>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/nests/">Nests</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/visits/">Visits</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/randomtrees/">Random Trees</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/transects/">Transects</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/transecttrees/">Transect Trees</a>
+</td>
+</tr>
+</table>
+</p>
+
+<hr>
+{% if all_values %} 
+
+<h3>Cavity List</h3>
+<table>
+<tr>
+<td><b>ID</b></td>
+<td><b>Tree</b></td>
+<td><b>Plot</b></td>
+<td><b>Observer</b></td>
+<td><b>Location</b></td>
+<td><b>Height</b></td>
+<td><b>Dist (Trunk)</b></td>
+<td><b>Dist (Branch)</b></td>
+<td><b>Diam (Cavity)</b></td>
+<td><b>Diam (Branch)</b></td>
+<td><b>Orientation</b></td>
+<td><b>Notes</b></td>
+</tr>
+
+{% for value in all_values %}
+<tr>
+<td align=center bgcolor="#e0e0ff"> 
+<a href="/cavitynesting/cavity/{{ value.id }}/">{{ value.cavityid }}</a>
+</td>
+
+<td> <a href="/cavitynesting/tree/{{ value.tree.id }}/">{{ value.tree.treeid }}</a></td>
+<td> <a href="/cavitynesting/plot/{{ value.tree.plot.id }}/">{{ value.tree.plot.plotid }}</a></td>
+<td> {{ value.observerinitials }} </td>
+<td> {{ value.location.name }} </td>
+<td> {{ value.height }} </td>
+<td> {{ value.distfromtrunk }} </td>
+<td> {{ value.disttobranchend }} </td>
+<td> {{ value.cavitydiam }} </td>
+<td> {{ value.branchdiam }} </td>
+<td> {{ value.orientation }} </td>
+<td> {{ value.displaynotes }} </td>
+</tr>
+{% endfor %}
+</table>
+
+{% else %} 
+<p>There are currently no cavities in the database.</p>
+{% endif %} 
+
+<p><a href="/cavitynesting/cavities/?type=csv">CSV</a></p>
+
+{% endblock %}

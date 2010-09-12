@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+
+{% block title %}View Tree {{ tree.treeid }} {% endblock %}
+
+{% block body %}
+
+{% if tree %}
+<a href="/cavitynesting/">Top</a> &gt;&gt;
+<a href="/cavitynesting/trees">Trees</a> &gt;&gt;
+<a href="/cavitynesting/plot/{{ tree.plot.id }}/">Plot {{ tree.plot.plotid }}</a> &gt;&gt;
+<a href="/cavitynesting/tree/{{ tree.id }}/?edit=true">Tree {{ tree.treeid }}</a> <br><br>
+
+<table border="3">
+<tr>
+<td valign=top width="40%">
+
+<table>
+<h3>Nest Tree Data</h3>
+<tr>
+<th align=right>ID:</th>
+<td align=left> {{ tree.treeid }} </td>
+</tr>
+<tr>
+<th align=right>Observer:</th> 
+<td align=left> {{ tree.observerinitials}} </td>
+</tr>
+<tr>
+<th align=right>Veg. Date:</th> 
+<td align=left> {{ tree.date }} </td>
+</tr>
+<tr>
+<th align=right>Species:</th> 
+<td align=left><a href="/cavitynesting/treespecies/{{tree.species.id}}/">{{ tree.species.name }}</a></td>
+</tr>
+<tr>
+<th align=right>Address:</th> 
+<td align=left> {{ tree.address }} </td>
+</tr>
+<tr>
+<th align=right>Tag:</th> 
+<td align=left> {{ tree.tag }} </td>
+</tr>
+
+<tr>
+<td align=right><b>Decay Class:</b></td> 
+<td align=left> {{ tree.decayclass.name }}</td>
+</tr>
+
+<tr>
+<th align=right># Cavities:</th> 
+<td align=left> {{ tree.numcavities }} </td>
+</tr>
+<tr>
+<th align=right>GPS:</th> 
+<td align=left> {{ tree.gps }} </td>
+</tr>
+
+<tr>
+<th align=right>Height:</th>
+<td align=left>{{ tree.height }}</td>
+</tr>
+
+<tr>
+<th align=right>Canopy Height:</th>
+<td align=left>{{ tree.canopyheight }}</td>
+</tr>
+
+<tr>
+<th align=right>Crown Dimension EW:</th>
+<td align=left>{{ tree.crowndimensionEW }}</td>
+</tr>
+
+<tr>
+<th align=right>Crown Dimension NS:</th>
+<td align=left>{{ tree.crowndimensionNS }}</td>
+</tr>
+
+<tr>
+<th align=right>% Dead:</th> 
+<td align=left> {{ tree.pctdead }} </td>
+</tr>
+
+<tr>
+<th align=right>DBH:</th> 
+<td align=left> {{ tree.dbh }} </td>
+</tr>
+
+<tr>
+<th align=right>Dead Branches:</th>
+<td align=left>
+	<table>
+		<tr>
+			<th align=right>Small:</th>
+			<td align=left>{{ tree.smalldeadbranches }}</td>
+		<tr>
+		<tr>
+			<th align=right>Medium:</th>
+			<td align=left>{{ tree.mediumdeadbranches }}</td>
+		<tr>
+		<tr>
+			<th align=right>Large:</th>
+			<td align=left>{{ tree.largedeadbranches }}</td>
+		<tr>
+	</table>
+</td>
+</tr>
+
+<tr>
+<th align=right>Slope Aspect:</th> 
+<td align=left> {{ tree.slopeaspect }} </td>
+</tr>
+<tr>
+<th align=right>Position on Slope:</th> 
+<td align=left> {{ tree.positionslope }} </td>
+</tr>
+
+<tr>
+<th align=right>Notes:</th> 
+<td align=left> {{ tree.notes }} </td>
+</tr>
+
+</table>
+
+</td>
+<td valign=top width="20%">
+
+<h3>Hazard Data</h3>
+<table>
+
+<tr>
+<th align=right>Species:</th> 
+<td align=left> {{ tree.hazard_species.name }} </td>
+</tr>
+
+<tr>
+<th align=right>DBH:</th> 
+<td align=left> {{ tree.hazard_dbh }} </td>
+</tr>
+
+<tr>
+<th align=right>Scores:</th>
+<td align=left>
+
+<table>
+	<tr>
+	<th align=left>Prob of Target:</th> 
+	<td align=left> {{ tree.hazard_probtarget }} </td>
+	</tr>
+
+	<tr>
+	<th align=left>Defective Size:</th> 
+	<td align=left> {{ tree.hazard_defectivesize }} </td>
+	</tr>
+
+	<tr>
+	<th align=left>Prob of Fail:</th> 
+	<td align=left> {{ tree.hazard_probfail }} </td>
+	</tr>
+
+	<tr>
+	<th align=left>Species Rating:</th> 
+	<td align=left> {{ tree.hazard_speciesrating }} </td>
+	</tr>
+
+	<tr><td><hr></td></tr>
+	<tr>
+		<th align=left>Hazard Rating:</th>
+		<td align=left>{{ tree.hazard_score }}</td>
+	</tr>
+</table>
+
+</td>
+</tr>
+
+<tr>
+<th align=right>Observer:</th> 
+<td align=left> {{ tree.hazard_observer }} </td>
+</tr>
+
+<tr>
+<th align=right>Date:</th> 
+<td align=left> {{ tree.hazard_date }} </td>
+</tr>
+
+<tr>
+<th align=right>Action:</th> 
+<td align=left> {{ tree.hazard_action }} </td>
+</tr>
+
+<tr>
+<th align=right>Hazard Notes:</th> 
+<td align=left> {{ tree.htmlhazardnotes }} </td>
+</tr>
+
+</table>
+
+</td>
+
+
+<td valign=top width="20%">
+<h3>Cavities:</h3>
+<table>
+{% if cavitylist %} 
+{% for c in cavitylist %}
+<tr>
+<td>
+<a href="/cavitynesting/cavity/{{ c.id }}/">Cavity {{ c.cavityid }} ({{ c.location.name }})</a><br>
+</td>
+</tr>
+{% endfor %}
+{% else %}
+<tr><td><i>No cavities listed for this tree.</i></td></tr>
+{% endif %}
+
+<tr><td><hr></td></tr>
+<tr><td>
+<a href="/cavitynesting/cavity-add.html?tree={{ tree.id }}">Add Cavity</a>
+</td></tr>
+</table>
+</td>
+
+<td valign=top width="20%">
+<h3>Random Trees:</h3>
+<table>
+{% if randomtrees %}
+{% for t in randomtrees %}
+<tr>
+<td>
+<a href="/cavitynesting/randomtree/{{t.id}}/">Random Tree {{ t.treeid }}</a><br>
+</td>
+</tr>
+{% endfor %}
+{% else %}
+<tr><td><i>No random trees listed for this tree.</i></td></tr>
+<tr><td><hr></td></tr>
+<tr><td>
+<a href="/cavitynesting/random-tree-add.html?tree={{ tree.id }}">Add Random Tree</a>
+</td></tr>
+{% endif %}
+</table>
+
+</td>
+
+</tr></table>
+
+{% else %} 
+<p>Unknown Tree: {{ tree_id }} </p>
+{% endif %}
+
+{% endblock %}
+

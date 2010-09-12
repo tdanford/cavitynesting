@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Cavity Nesting DB Updates{% endblock %}
+
+{% block body %}
+
+<i>
+<p>Messages from Tim: </p>
+<p><b>6/22/2008:</b> I've added a new entry, 'EASO', to the list of available bird species.</p>
+<p><b>6/19/2008:</b> I think I've fixed the problem where the Visit "Fledged Certainty" field could be set correctly (usually) when the Visit was first created, but would revert to "sure" when you tried to edit the Visit and could not be correctly set after that.  <font color="red">Please double check the "Fledged Certainty" values of any Visit field you've tried to recently edit</font>, and let Rachel know if you see any more problems.</p>
+<p><b>6/17/2008:</b> I've added a "probable" value to the Visit "Fledged Certainty" field.
+Rachel has also told me that some people have received an intermittent error when entering new Visit entries.  If anyone is able to <b>consistently</b> get the website to give you an error when entering a visit, please write down: <ul><li>The nest that you were trying to add the visit to,</li><li>All the fields that you tried to enter for that visit,</li><li>And whether you were able to eventually add the visit successfully,</li></ul> and email this information to Rachel. 
+</p>
+<p><b>6/16/2008:</b> A particular visit to Nest T140801A didn't have a time entered -- this was causing an error when trying to view either that Nest or the "All Visits" list.  I've fixed that problematic visit, but from now on please remember to enter a properly formatted date (year-month-day) and time (hour:minute:second) for each visit. <br>
+There was also an intermediate bug that gave an error occasionally when trying to view this page (the one this message is on).  I believe I have fixed that too.  
+<br>You can email me (tdanford@mit.edu) if you notice any other consistent problems and it's an emergency; otherwise, please email Rachel (rlevine@nrc.umass.edu) with questions or bug-reports.</p>
+</i>
+
+{% endblock %}

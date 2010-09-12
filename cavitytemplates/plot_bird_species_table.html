@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Bird Species Index{% endblock %}
+
+{% block body %}
+
+<p><a href="/cavitynesting/">Top Level</a></p>
+
+{% if species %} 
+
+<h3>Bird Species by Plot</h3>
+<p><a href="/cavitynesting/plotbirdspecies.html?type=csv">CSV</a></p>
+<table>
+<tr>
+<th>Plot:</th>
+{% for sp in species %}
+<th>{{ sp.name }}</th>
+{% endfor %}
+</tr>
+
+{% for lst in plots %}
+<tr>
+<td align=center bgcolor="#e0e0ff"> 
+<a href="/cavitynesting/plot/{{ lst.plot.id }}/">{{ lst.plot.plotid }}</a>
+</td>
+
+{% for c in lst.counts %}
+	<td align=center>
+	{{ c }}
+	</td>
+{% endfor %}
+</tr>
+
+{% endfor %}
+</table>
+
+{% else %} 
+<p>There are currently no bird species in the database.</p>
+{% endif %} 
+
+{% endblock %}

@@ -1,0 +1,4 @@
+Plot:{% for sp in species %}	{{ sp.name }}{% endfor %}
+{% for lst in plots %}
+{{ lst.plot.plotid }}{% for c in lst.counts %}	{{ c }}{% endfor %}
+{% endfor %}

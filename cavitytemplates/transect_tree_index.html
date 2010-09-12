@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Transect Tree Index{% endblock %}
+
+{% block body %}
+
+<a href="/cavitynesting/">Top Level</a><br>
+
+<p>
+<table>
+<tr>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/plots/">Plots</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/trees/">Trees</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/cavities/">Cavities</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/nests/">Nests</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/visits/">Visits</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/randomtrees/">Random Trees</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/transects/">Transects</a>
+</td>
+<td bgcolor="pink">
+	<b>Transect Trees</b>
+</td>
+</tr>
+</table>
+</p>
+
+<hr>
+{% if all_values %} 
+
+<h3>Transect Tree List</h3>
+<table>
+<tr>
+<td><b>ID</b></td>
+<td><b>Transect</b></td>
+<td><b>Plot</b></td>
+<td><b>Order</b></td>
+<td><b>Tag</b></td>
+
+<td><b>Observer</b></td>
+<td><b>Species</b></td>
+<td><b>Decay Class</b></td>
+<td><b># Cavities</b></td>
+
+<td><b>Height</b></td>
+<td><b>Crown EW</b></td>
+<td><b>Crown NS</b></td>
+<td><b>% Dead</b></td>
+<td><b>DBH</b></td>
+<td><b>S. Dead Branches</b></td>
+<td><b>M. Dead Branches</b></td>
+<td><b>L. Dead Branches</b></td>
+
+<td><b>Notes</b></td>
+</tr>
+
+{% for value in all_values %}
+<tr>
+<td align=center bgcolor="#e0e0ff"> <a href="/cavitynesting/transecttree/{{ value.id }}/">{{ value.treeid }}</a></td>
+<td align=center> <a href="/cavitynesting/transect/{{ value.transect.id }}/">#{{ value.transect.transectnumber }}</a></td>
+<td align=center> <a href="/cavitynesting/plot/{{ value.transect.plot.id }}/">{{ value.transect.plot.plotid }}</a></td>
+<td> {{ value.treeorder }} </td>
+<td> {{ value.tag }} </td>
+
+<td> {{ value.observerinitials }} </td>
+<td> {{ value.species }} </td>
+<td> {{ value.decayclass.name }} </td>
+<td> {{ value.numcavities }} </td>
+
+<td> {{ value.height }} </td>
+<td> {{ value.crowndimensionEW }} </td>
+<td> {{ value.crowndimensionNS }} </td>
+<td> {{ value.pctdead }} </td>
+<td> {{ value.dbh }} </td>
+<td> {{ value.smalldeadbranches }} </td>
+<td> {{ value.mediumdeadbranches }} </td>
+<td> {{ value.largedeadbranches }} </td>
+<td> {{ value.displaynotes }} </td>
+</tr>
+{% endfor %}
+</table>
+
+{% else %} 
+<p>There are currently no transect trees in the database.</p>
+{% endif %} 
+
+<p><a href="/cavitynesting/transecttrees/?type=csv">CSV</a></p>
+
+{% endblock %}

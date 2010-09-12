@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}View Nest {{ nest.nestid }} {% endblock %}
+
+{% block body %}
+
+{% if nest %}
+<p>
+<a href="/cavitynesting/">Top</a> &gt;&gt; 
+<a href="/cavitynesting/nests">Nests</a> &gt;&gt; 
+<a href="/cavitynesting/plot/{{ nest.cavity.tree.plot.id }}/">Plot {{ nest.cavity.tree.plot.plotid }}</a> &gt;&gt;
+<a href="/cavitynesting/tree/{{ nest.cavity.tree.id }}/">Tree {{ nest.cavity.tree.treeid }}</a>  &gt;&gt;
+<a href="/cavitynesting/cavity/{{ nest.cavity.id }}/">Cavity {{ nest.cavity.cavityid }}</a>  &gt;&gt;
+<a href="/cavitynesting/nest/{{ nest.id }}/?edit=true">Nest {{ nest.nestid }}</a>
+</p>
+
+<table border=3>
+<tr>
+<td valign=top width="70%">
+
+<h3>Nest Data:</h3>
+<table>
+<tr>
+<td align=right><b>ID:</b></td>
+<td align=left> {{ nest.nestid }} </td>
+</tr>
+<tr>
+<td align=right><b>Observer:</b></td>
+<td align=left> {{ nest.observerinitials }} </td>
+</tr>
+<tr>
+<td align=right><b>Find Method:</b></td> 
+<td align=left> {{ nest.findmethod.name }} </td>
+</tr>
+<tr>
+<td align=right><b>Species:</b></td> 
+<td align=left> {{ nest.species }} </td>
+</tr>
+
+<tr>
+<td align=right><b>Nest Fate:</b></td> 
+<td align=left> {{ nest.nestfate }} </td>
+</tr>
+
+<tr>
+<td align=right><b>Notes:</b></td> 
+<td align=left> {{ nest.htmlnotes }} </td>
+</tr>
+</table>
+</td>
+
+<td valign=top width="30%">
+
+<h3>Visits:</h3>
+{% if visitlist %} 
+<table>
+<tr>
+<td align=center width="20%"><i>Date</i></td>
+<td align=center width="10%"><i>Observer</i></td>
+<td align=center width="10%"><i>Eggs</i></td>
+<td align=center width="10%"><i>Nestlings</i></td>
+<td align=center width="10%"><i>Fledglings</i></td>
+<td align=center width="10%"><i>Fledged?</i></td>
+<td align=center width="10%"><i>Status</i></td>
+<td align=center width="10%"><i>Stage</i></td>
+<td align=center width="10%"><i>Notes</i></td>
+</tr>
+{% for v in visitlist %}
+<tr>
+	<td align=center width="20%"><a href="/cavitynesting/visit/{{ v.id }}/">{{ v.date }}</a></td>
+	<td align=center width="10%">{{ v.observerinitials }}</td>
+	<td align=center width="10%">{{ v.eggs }}</td>
+	<td align=center width="10%">{{ v.nestlings }}</td>
+	<td align=center width="10%">{{ v.fledglings }}</td>
+	<td align=center width="10%">{{ v.fledgedcertainty }}</td>
+	<td align=center width="10%">{{ v.status }}</td>
+	<td align=center width="10%">{{ v.stage.name }}</td>
+	<td align=center width="10%">{{ v.displaynotes }}</td>
+</tr>
+{% endfor %}
+{% else %}
+<tr><td> <i>No visits listed.</i> </td></tr>
+{% endif %}
+
+<tr><td colspan="9"><hr></td></tr>
+<tr><td colspan="9"><a href="/cavitynesting/visit-add.html?nest={{nest.id}}">Add Visit</a></td></tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+ 
+{% else %} 
+<p>Unknown Nest: {{ nest_id }} </p>
+{% endif %}
+
+{% endblock %}
+

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Tree Species Index{% endblock %}
+
+{% block body %}
+
+<p><a href="/cavitynesting/">Top Level</a></p>
+
+{% if all_values %} 
+
+<h3>Tree Species List</h3>
+<table>
+<tr>
+<th>Name:</th>
+<th># Nest:</th>
+<th># Random:</th>
+<th># Transect:</th>
+</tr>
+
+{% for value in all_values %}
+<tr>
+<td align=center bgcolor="#e0e0ff"> 
+<a href="/cavitynesting/treespecies/{{ value.id }}/">{{ value.name }}</a>
+</td>
+<td align=center>
+{{ value.nests }}
+</td>
+<td align=center>
+{{ value.randoms }}
+</td>
+<td align=center>
+{{ value.transects }}
+</td>
+</tr>
+{% endfor %}
+</table>
+
+{% else %} 
+<p>There are currently no tree species in the database.</p>
+{% endif %} 
+
+{% endblock %}

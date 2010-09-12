@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Cavity Nesting DB{% endblock %}
+
+{% block body %}
+<table>
+<tr>
+<th>All</th>
+<td>
+<table>
+<tr><td><a href="/cavitynesting/plots/">Plots</a></td></tr>
+<tr><td><a href="/cavitynesting/trees/">Nest Trees</a></td></tr>
+<tr><td><a href="/cavitynesting/cavities/">Cavities</a></td></tr>
+<tr><td><a href="/cavitynesting/nests/">Nests</a></td></tr>
+<tr><td><a href="/cavitynesting/visits/">Visits</a></td></tr>
+<tr><td><a href="/cavitynesting/randomtrees/">Random Trees</a></td></tr>
+<tr><td><a href="/cavitynesting/transects/">Transects</a></td></tr>
+<tr><td><a href="/cavitynesting/transecttrees/">Transect Trees</a></td></tr>
+</table>
+</td>
+</tr>
+</table>
+<hr>
+<table>
+<tr>
+<th>Queries</th>
+<td>
+	<table>
+	<tr><td><a href="/cavitynesting/treespecies/">Tree Species</a></td></tr>
+	<tr><td><a href="/cavitynesting/global/">Global Tree Data</a></td></tr>
+	<tr><td><a href="/cavitynesting/plotnestcounts.html">Plot: Nest Counts</a></td></tr>
+	<tr><td><a href="/cavitynesting/plotbirdspecies.html">Plot: Bird Species</a></td></tr>
+	</table>
+</td>
+</tr>
+</table>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if tree_species %}
+View Tree Species {{ tree_species.name }} 
+{% else %}
+Error 
+{% endif %}
+{% endblock %}
+
+{% block body %}
+
+<p>
+<a href="/cavitynesting/">Top</a> &gt;&gt; 
+<a href="/cavitynesting/treespecies/">Tree Species</a>
+</p>
+
+{% if tree_species %}
+
+<h2>{{ tree_species.name }}</h2>
+
+<table>
+<tr>
+<td valign=top width="30%">
+<h3>Nest Trees:</h3>
+<table>
+{% if nest_trees %}
+{% for t in nest_trees %}
+<tr>
+<td>
+<a href="/cavitynesting/tree/{{ t.id }}/">{{ t.treeid }}</a>
+</td>
+</tr>
+{% endfor %}
+{% else %}
+<tr><td><i>None</i></td></tr>
+{% endif %}
+</table>
+</td>
+
+<td valign=top width="30%">
+<h3>Transect Trees:</h3>
+<table>
+{% if transect_trees %}
+{% for t in transect_trees %}
+<tr>
+<td>
+<a href="/cavitynesting/transecttree/{{ t.id }}/">{{ t.treeid }}</a>
+</td>
+</tr>
+{% endfor %}
+{% else %}
+<tr><td><i>None</i></td></tr>
+{% endif %}
+</table>
+</td>
+
+<td valign=top width="30%">
+<h3>Random Trees:</h3>
+<table>
+{% if random_trees %}
+{% for t in random_trees %}
+<tr>
+<td>
+<a href="/cavitynesting/randomtree/{{ t.id }}/">{{ t.treeid }}</a>
+</td>
+</tr>
+{% endfor %}
+{% else %}
+<tr><td><i>None</i></td></tr>
+{% endif %}
+</table>
+</td>
+
+</tr>
+</table>
+
+{% else %} 
+<p><i>Unknown Tree Species</i></p>
+{% endif %}
+
+{% endblock %}
+

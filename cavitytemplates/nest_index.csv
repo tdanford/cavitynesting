@@ -1,0 +1,3 @@
+ID	Cavity	Observer	Find Method	Species	Nest Fate	Notes 
+{% for value in all_values %}
+{{ value.nestid }}	{{ value.cavity.cavityid }}	{{ value.observerinitials }}	{{ value.findmethod }}	{{ value.species.name }}	{{ value.nestfate.name }}	"{{ value.csvnotes }}" {% endfor %}

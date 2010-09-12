@@ -1,0 +1,3 @@
+Number	 Plot	 Date	 Observer	 Start	 End	 # Snags	 Dominant Species	 Notes
+{% for value in all_values %}
+{{ value.transectnumber }}	{{ value.plot.plotid }}	{{ value.date }}	{{ value.observerinitials }}	{{ value.startpoint }}	{{ value.endpoint }}	{{ value.numsnags }}	{{ value.dominantspecies.name }}	"{{ plot.csvnotes }}" {% endfor %}

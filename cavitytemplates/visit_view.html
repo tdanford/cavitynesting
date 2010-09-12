@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}View Visit {{ visit}} {% endblock %}
+
+{% block body %}
+
+{% if visit %}
+<a href="/cavitynesting/">Top</a> &gt;&gt; 
+<a href="/cavitynesting/visits">Visits</a> &gt;&gt; 
+<a href="/cavitynesting/plot/{{ visit.nest.cavity.tree.plot.id }}/">Plot {{ visit.nest.cavity.tree.plot.plotid }}</a> &gt;&gt;
+<a href="/cavitynesting/tree/{{ visit.nest.cavity.tree.id }}/">Tree {{ visit.nest.cavity.tree.treeid }}</a>  &gt;&gt;
+<a href="/cavitynesting/cavity/{{ visit.nest.cavity.id }}/">Cavity {{ visit.nest.cavity.cavityid }}</a>  &gt;&gt;
+<a href="/cavitynesting/nest/{{ visit.nest.id }}/">Nest {{ visit.nest.nestid }}</a> &gt;&gt; 
+<a href="/cavitynesting/visit/{{ visit.id }}/?edit=true">Visit {{ visit.date }}</a>
+<br><br>
+
+<table>
+<tr>
+	<td align=right><b>Date:</b></td>
+	<td align=left> {{ visit.date }} </td>
+</tr>
+<tr>
+	<td align=right><b>Nest:</b></td>
+	<td align=left><a href="/cavitynesting/nest/{{ visit.nest.id }}/">{{ visit.nest.nestid }}</a></td>
+</tr>
+<tr>
+	<td align=right><b>Observer:</b></td>
+	<td align=left> {{ visit.observerinitials }} </td>
+</tr>
+<tr>
+	<td align=right><b>Eggs:</b></td>
+	<td align=left>{{ visit.eggs }}</td>
+</tr>
+<tr>
+	<td align=right><b>Nestlings:</b></td>
+	<td align=left>{{ visit.nestlings }}</td>
+</tr>
+<tr>
+	<td align=right><b>Fledglings:</b></td>
+	<td align=left>{{ visit.fledglings }}</td>
+</tr>
+<tr>
+	<td align=right><b>Fledged Certainty:</b></td>
+	<td align=left>{{ visit.fledgedcertainty }}</td>
+</tr>
+<tr>
+	<td align=right><b>Nest Status:</b></td>
+	<td align=left>{{ visit.status }}</td>
+</tr>
+<tr>
+	<td align=right><b>Nest Stage:</b></td>
+	<td align=left>{{ visit.stage.name }}</td>
+</tr>
+<tr>
+	<td align=right><b>Notes:</b></td>
+	<td align=left>{{ visit.htmlnotes }}</td>
+</tr>
+</table>
+
+{% else %} 
+<p>Unknown Visit: {{ visit_id }} </p>
+{% endif %}
+
+{% endblock %}
+

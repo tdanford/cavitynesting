@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Plot Index{% endblock %}
+
+{% block body %}
+
+<p><a href="/cavitynesting/">Top Level</a></p>
+
+<p>
+<table>
+<tr>
+<td bgcolor="pink">
+	<b>Plots</b>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/trees/">Trees</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/cavities/">Cavities</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/nests/">Nests</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/visits/">Visits</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/randomtrees/">Random Trees</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/transects/">Transects</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/transecttrees/">Transect Trees</a>
+</td>
+</tr>
+</table>
+</p>
+
+<p><a href="/cavitynesting/plot-add.html">Add Plot</a></p>
+<hr>
+
+{% if all_values %} 
+
+<h3>Plot List</h3>
+<table>
+<tr>
+<td><b>ID</b></td>
+<td><b>GPS</b></td>
+<td><b>Location</b></td>
+<td><b>Observer</b></td>
+<td><b>Notes</b></td>
+</tr>
+
+{% for plot in all_values %}
+<tr>
+<td align=center bgcolor="#e0e0ff"> <a href="/cavitynesting/plot/{{ plot.id }}/">{{ plot.plotid }}</a></td>
+<td> {{ plot.gps }} </td>
+<td> {{ plot.address }} </td>
+<td> {{ plot.observerinitials }} </td>
+<td> {{ plot.displaynotes }} </td>
+</tr>
+{% endfor %}
+</table>
+
+<hr>
+
+{% else %} 
+<p>There are currently no plots in the database.</p>
+{% endif %} 
+
+<p><a href="/cavitynesting/plot-add.html">Add Plot</a></p>
+<p><a href="/cavitynesting/plots/?type=csv">CSV</a></p>
+
+{% endblock %}

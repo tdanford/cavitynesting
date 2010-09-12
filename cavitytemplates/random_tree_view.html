@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+
+{% block title %}View Random Tree {{ tree.treeid }} {% endblock %}
+
+{% block body %}
+
+{% if tree %}
+<p>
+<a href="/cavitynesting/">Top</a> &gt;&gt;
+<a href="/cavitynesting/randomtrees">Random Trees</a> &gt;&gt;
+<a href="/cavitynesting/plot/{{ tree.tree.plot.id }}/">Plot {{ tree.tree.plot.plotid }}</a> &gt;&gt;
+<a href="/cavitynesting/tree/{{ tree.tree.id }}/">Tree {{ tree.tree.treeid }}</a> &gt;&gt;
+<a href="/cavitynesting/randomtree/{{ tree.id }}/?edit=true">Random Tree {{ tree.treeid }}</a> 
+</p>
+
+<table border=3>
+<tr>
+<td valign=top>
+<h3>Random Tree Data:</h3>
+
+<table>
+<tr>
+<td align=right><b>ID:</b></td>
+<td align=left> {{ tree.treeid }} </td>
+</tr>
+<tr>
+<td align=right><b>Nest Tree:</b></td>
+<td align=left> <a href="/cavitynesting/tree/{{tree.tree.id}}/">{{ tree.tree.treeid }}</a></td>
+</tr>
+<tr>
+<td align=right><b>Observer:</b></td> 
+<td align=left> {{ tree.observerinitials}} </td>
+</tr>
+<tr>
+<td align=right><b>Date:</b></td> 
+<td align=left> {{ tree.date }} </td>
+</tr>
+<tr>
+<td align=right><b>Species:</b></td> 
+<td align=left><a href="/cavitynesting/treespecies/{{tree.species.id}}/">{{ tree.species.name }}</a></td>
+</tr>
+<tr>
+<td align=right><b>Tag:</b></td> 
+<td align=left> {{ tree.tag }} </td>
+</tr>
+<tr>
+<td align=right><b># Cavities:</b></td> 
+<td align=left> {{ tree.numcavities }} </td>
+</tr>
+<tr>
+<td align=right><b>Address:</b></td> 
+<td align=left> {{ tree.address }} </td>
+</tr>
+<tr>
+<td align=right><b>GPS:</b></td> 
+<td align=left> {{ tree.gps }} </td>
+</tr>
+<tr>
+<td align=right><b>Date:</b></td> 
+<td align=left> {{ tree.date }} </td>
+</tr>
+<tr>
+<td align=right><b>Decay Class:</b></td> 
+<td align=left> {{ tree.decayclass.name }} </td>
+</tr>
+
+<tr>
+<th align=right>Height:</th>
+<td align=left>{{ tree.height }}</td>
+<tr>
+<tr>
+<th align=right>Canopy Height:</th>
+<td align=left>{{ tree.canopyheight }}</td>
+<tr>
+<tr>
+<th align=right>Crown Dimension EW:</th>
+<td align=left>{{ tree.crowndimensionEW }}</td>
+</tr>
+<tr>
+<th align=right>Crown Dimension NS:</th>
+<td align=left>{{ tree.crowndimensionNS }}</td>
+</tr>
+
+<tr>
+<td align=right><b>% Dead:</b></td> 
+<td align=left> {{ tree.pctdead }} </td>
+</tr>
+<tr>
+<td align=right><b>DBH:</b></td> 
+<td align=left> {{ tree.dbh }} </td>
+</tr>
+
+<tr>
+<td align=right><b>Dead Branches:</b></td>
+<td align=left>
+	<table>
+		<tr>
+			<td align=right>Small:</td>
+			<td align=left>{{ tree.smalldeadbranches }}</td>
+		<tr>
+		<tr>
+			<td align=right>Medium:</td>
+			<td align=left>{{ tree.mediumdeadbranches }}</td>
+		<tr>
+		<tr>
+			<td align=right>Large:</td>
+			<td align=left>{{ tree.largedeadbranches }}</td>
+		<tr>
+	</table>
+</tr>
+
+<tr>
+<td align=right><b>Slope Aspect:</b></td> 
+<td align=left> {{ tree.slopeaspect }} </td>
+</tr>
+<tr>
+<td align=right><b>Position on Slope:</b></td> 
+<td align=left> {{ tree.positionslope }} </td>
+</tr>
+
+<tr>
+<td align=right><b>Notes:</b></td> 
+<td align=left> {{ tree.htmlnotes }} </td>
+</tr>
+
+</table>
+
+</td>
+<td valign=top>
+
+<h3>Hazard Data:</h3>
+<table>
+
+<tr>
+<td align=right><b>Species:</b></td> 
+<td align=left> {{ tree.hazard_species.name }} </td>
+</tr>
+
+<tr>
+<td align=right><b>DBH:</b></td> 
+<td align=left> {{ tree.hazard_dbh }} </td>
+</tr>
+
+<tr>
+<th align=right>Hazard</th>
+<td>
+	<table>
+	<tr>
+	<td align=right><b>Prob of Target:</b></td> 
+	<td align=left> {{ tree.hazard_probtarget }} </td>
+	</tr>
+
+	<tr>
+	<td align=right><b>Defective Size:</b></td> 
+	<td align=left> {{ tree.hazard_defectivesize }} </td>
+	</tr>
+
+	<tr>
+	<td align=right><b>Prob of Fail:</b></td> 
+	<td align=left> {{ tree.hazard_probfail }} </td>
+	</tr>
+
+	<tr>
+	<td align=right><b>Species Rating:</b></td> 
+	<td align=left> {{ tree.hazard_speciesrating }} </td>
+	</tr>
+
+	<tr><td><hr></td></tr>
+	<tr>
+		<th align=right>Hazard Rating:</th>
+		<td align=left>{{ tree.hazard_score }}</td>
+	</tr>
+	</table>
+</td>
+</tr>
+
+<tr>
+<td align=right><b>Observer:</b></td> 
+<td align=left> {{ tree.hazard_observer }} </td>
+</tr>
+
+<tr>
+<td align=right><b>Date:</b></td> 
+<td align=left> {{ tree.hazard_date }} </td>
+</tr>
+
+<tr>
+<td align=right><b>Action:</b></td> 
+<td align=left> {{ tree.htmlaction }} </td>
+</tr>
+
+<tr>
+<th align=right>Hazard Notes:</th> 
+<td align=left> {{ tree.htmlhazardnotes }} </td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+{% else %} 
+<p>Unknown Random Tree: {{ tree_id }} </p>
+{% endif %}
+
+{% endblock %}
+

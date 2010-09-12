@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}View Plot {{ plot.plotid }} {% endblock %}
+
+{% block body %}
+
+{% if plot %}
+<p>
+<a href="/cavitynesting/">Top</a> &gt;&gt; 
+<a href="/cavitynesting/plots">Plots</a> &gt;&gt; 
+<a href="/cavitynesting/plot/{{ plot.id }}/?edit=true">Plot {{ plot.plotid }}</a><br>
+</p>
+
+<table border=3>
+<tr>
+
+<td valign=top width="50%">
+<h3>Plot Data</h3>
+<table>
+<tr>
+<td align=right><b>ID:</b></td>
+<td align=left> {{ plot.plotid }} </td>
+</tr>
+<tr>
+<td align=right><b>Observer Initials:</b></td> 
+<td align=left> {{ plot.observerinitials }} </td>
+</tr>
+<tr>
+<td align=right><b>GPS:</b></td> 
+<td align=left> {{ plot.gps }} </td>
+</tr>
+<tr>
+<td align=right><b>Address:</b></td> 
+<td align=left> {{ plot.address }} </td>
+</tr>
+<tr>
+<td align=right><b>Notes:</b></td> 
+<td align=left> {{ plot.htmlnotes }} </td>
+</tr>
+</table>
+</td>
+
+<td valign=top width="25%">
+<h3>Transects:</h3>
+<table>
+{% if transectlist %} 
+{% for t in transectlist %}
+<tr><td>
+<a href="/cavitynesting/transect/{{ t.id }}/">Transect {{ t.transectnumber }}</a><br>
+</td></tr>
+{% endfor %}
+ 
+{% else %} 
+<tr><td> <i>No transects are listed for this plot.</i> </td></tr>
+{% endif %} 
+<tr><td><hr></td></tr>
+<tr><td> <a href="/cavitynesting/transect-add.html?plot={{ plot.id }}">Add Transect</a><br> </td></tr>
+</table>
+</td>
+
+<td valign=top width="25%">
+<h3>Nest Trees:</h3>
+<table>
+{% if treelist %} 
+{% for t in treelist %}
+<tr><td>
+<a href="/cavitynesting/tree/{{ t.id }}/">Tree {{ t.treeid }} ({{ t.species.name }})</a><br>
+</td></tr>
+{% endfor %}
+ 
+{% else %} 
+<tr><td> <i>No trees are listed for this plot.</i> </td></tr>
+{% endif %} 
+<tr><td><hr></td></tr>
+<tr><td> <a href="/cavitynesting/tree-add.html?plot={{ plot.id }}">Add Tree</a><br> </td></tr>
+</table>
+</td>
+
+</tr>
+</table>
+
+{% else %} 
+<p>Unknown Plot: {{ plot_id }} </p>
+{% endif %}
+
+{% endblock %}
+

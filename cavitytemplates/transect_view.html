@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}View Transect {{ transect.transectnumber }} {% endblock %}
+
+{% block body %}
+
+{% if transect %}
+<p>
+<a href="/cavitynesting/">Top</a> &gt;&gt;
+<a href="/cavitynesting/transects">Transects</a> &gt;&gt;
+<a href="/cavitynesting/plot/{{ transect.plot.id }}/">Plot {{ transect.plot.plotid }}</a> &gt;&gt;
+<a href="/cavitynesting/transect/{{ transect.id }}/?edit=true">Transect {{ transect.transectnumber }}</a> 
+</p>
+
+<table border=3>
+<tr>
+<td valign=top width="60%">
+
+<h3>Transect Data:</h3>
+<table>
+<tr>
+	<td align=right><b>Transect #:</b></td>
+	<td align=left> {{ transect.transectnumber }} </td>
+</tr>
+
+<tr>
+	<td align=right><b>Plot:</b></td>
+	<td align=left><a href="/cavitynesting/plot/{{ transect.plot.id }}/">{{ transect.plot.plotid }}</a></td>
+</tr>
+
+<tr>
+	<td align=right><b>Date:</b></td>
+	<td align=left> {{ transect.date }} </td>
+</tr>
+
+<tr>
+	<td align=right><b>Observer:</b></td>
+	<td align=left> {{ transect.observerinitials }} </td>
+</tr>
+
+<tr>
+	<td align=right><b>Transect Start Point:</b></td>
+	<td align=left> {{ transect.startpoint }} </td>
+</tr>
+
+<tr>
+	<td align=right><b>Transect End Point:</b></td>
+	<td align=left> {{ transect.endpoint }} </td>
+</tr>
+
+<tr>
+	<td align=right><b># of Snags:</b></td>
+	<td align=left> {{ transect.numsnags }} </td>
+</tr>
+
+<tr>
+	<td align=right><b>Dominant Tree Species:</b></td>
+	<td align=left> {{ transect.dominantspecies }} </td>
+</tr>
+
+<tr>
+	<td align=right><b>Notes:</b></td>
+	<td align=left> {{ transect.htmlnotes }} </td>
+</tr>
+
+</table>
+</td>
+
+<td valign=top width="40%">
+<h3>Transect Trees:</h3>
+
+<table>
+
+{% if treelist %} 
+{% for c in treelist %}
+<tr><td>
+<a href="/cavitynesting/transecttree/{{ c.id }}/">Tree {{ c.treeorder }} ({{ c.treeid }})</a><br>
+</td></tr>
+{% endfor %}
+{% else %}
+<tr><td><i>No trees listed for this transect.</i></td></tr>
+{% endif %}
+<tr><td><hr></td></tr>
+<tr><td>
+<a href="/cavitynesting/transect-tree-add.html?transect={{ transect.id }}">Add Transect Tree</a>
+</td></tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+{% else %} 
+<p>Unknown Transect: {{ transect_id }} </p>
+{% endif %}
+
+{% endblock %}
+

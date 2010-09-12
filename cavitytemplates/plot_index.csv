@@ -1,0 +1,3 @@
+ID	 GPS	 Location	 Observer	 Notes
+{% for plot in all_values %}
+{{ plot.plotid }}	{{ plot.gps }}	{{ plot.address }}	{{ plot.observerinitials }}	"{{ plot.csvnotes }}" {% endfor %}

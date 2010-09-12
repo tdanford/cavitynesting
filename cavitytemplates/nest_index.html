@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Nest Index{% endblock %}
+
+{% block body %}
+
+<a href="/cavitynesting/">Top Level</a><br>
+
+<p>
+<table>
+<tr>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/plots/">Plots</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/trees/">Trees</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/cavities/">Cavities</a>
+</td>
+<td bgcolor="pink">
+	<b>Nests</b>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/visits/">Visits</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/randomtrees/">Random Trees</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/transects/">Transects</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/transecttrees/">Transect Trees</a>
+</td>
+</tr>
+</table>
+</p>
+
+<hr>
+{% if all_values %} 
+
+<h3>Nest List</h3>
+<table>
+<tr>
+<td><b>ID</b></td>
+<td><b>Cavity</b></td>
+<td><b>Observer</b></td>
+<td><b>Find Method</b></td>
+<td><b>Species</b></td>
+<td><b>Nest Fate</b></td>
+<td><b>Notes</b></td>
+</tr>
+
+{% for value in all_values %}
+<tr>
+<td align=center bgcolor="#e0e0ff"> <a href="/cavitynesting/nest/{{ value.id }}/">{{ value.nestid }}</a></td>
+<td> <a href="/cavitynesting/cavity/{{ value.cavity.id }}/">{{ value.cavity.cavityid }}</a></td>
+<td> {{ value.observerinitials }} </td>
+<td> {{ value.findmethod }} </td>
+<td> {{ value.species.name }} </td>
+<td> {{ value.nestfate.name }} </td>
+<td> {{ value.notes }} </td>
+</tr>
+{% endfor %}
+</table>
+
+{% else %} 
+<p>There are currently no nests in the database.</p>
+{% endif %} 
+
+<p><a href="/cavitynesting/nests/?type=csv">CSV</a></p>
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}View Cavity {{ cavity.cavityid }} {% endblock %}
+
+{% block body %}
+
+{% if cavity %}
+<p>
+<a href="/cavitynesting/">Top</a> &gt;&gt; 
+<a href="/cavitynesting/cavities">Cavities</a> &gt;&gt; 
+<a href="/cavitynesting/plot/{{ cavity.tree.plot.id }}/">Plot {{ cavity.tree.plot.plotid }}</a> &gt;&gt;
+<a href="/cavitynesting/tree/{{ cavity.tree.id }}/">Tree {{ cavity.tree.treeid }}</a> &gt;&gt; 
+<a href="/cavitynesting/cavity/{{ cavity.id }}/?edit=true">Cavity {{ cavity.cavityid }}</a>
+</p>
+
+<table border=3>
+<tr>
+<td valign=top width="65%">
+<h3>Cavity Data:</h3>
+<table>
+<tr>
+<td align=right><b>ID:</b></td>
+<td align=left> {{ cavity.cavityid }} </td>
+</tr>
+<tr>
+<td align=right><b>Tree:</b></td>
+<td align=left><a href="/cavitynesting/tree/{{cavity.tree.id}}/">{{ cavity.tree.treeid }}</a></td>
+</tr>
+<tr>
+<td align=right><b>Observer:</b></td>
+<td align=left> {{ cavity.observerinitials }} </td>
+</tr>
+<tr>
+<td align=right><b>Height From Ground:</b></td> 
+<td align=left> {{ cavity.heightfromground }} </td>
+</tr>
+<tr>
+<td align=right><b>Location:</b></td> 
+<td align=left> {{ cavity.location.name }} </td>
+</tr>
+<tr>
+<td align=right><b>Distances:</b></td> 
+<td align=left>
+	<table>
+		<tr><td align=left>From Trunk:</td>
+			<td align=right>{{ cavity.distfromtrunk }}</td></tr>
+		<tr><td align=left>To Branch End:</td>
+			<td align=right>{{ cavity.disttobranchend }}</td></tr>
+	</table>
+</td>
+</tr>
+
+<tr>
+<td align=right><b>Cavity Diameter:</b></td> 
+<td align=left> {{ cavity.cavitydiam }} </td>
+</tr>
+
+<tr>
+<td align=right><b>Branch Diameter:</b></td> 
+<td align=left> {{ cavity.branchdiam }} </td>
+</tr>
+
+<tr>
+<td align=right><b>Orientation:</b></td> 
+<td align=left> {{ cavity.orientation }}</td>
+</tr>
+
+<tr>
+<td align=right><b>Notes:</b></td> 
+<td align=left> {{ cavity.notes }} </td>
+</tr>
+</table>
+</td>
+
+<td valign=top width="35%">
+
+<table>
+<h3>Nests:</h3>
+{% if nestlist %} 
+{% for n in nestlist %}
+<tr><td> <a href="/cavitynesting/nest/{{ n.id }}/">Nest {{ n.nestid }}</a><br> </td></tr>
+{% endfor %}
+ 
+{% else %} 
+<tr><td><i>No nests are listed for this cavity.</i></td></tr>
+{% endif %} 
+<tr><td><hr></td></tr>
+<tr><td> <a href="/cavitynesting/nest-add.html?cavity={{ cavity.id }}">Add Nest</a><br> </td></tr>
+</table>
+
+{% else %} 
+<p>Unknown Plot: {{ plot_id }} </p>
+{% endif %}
+
+{% endblock %}
+

@@ -1,0 +1,3 @@
+ID	 Tree	 Plot	 Observer	 Location	 Height from Ground	Dist (Trunk)	 Dist (Branch)	 Diam (Cavity)	 Diam (Branch)	 Orientation	Notes
+{% for value in all_values %}
+{{ value.cavityid }}	{{ value.tree.treeid }}	{{ value.tree.plot.plotid }}	{{ value.observerinitials }}	{{ value.location.name }}	{{ value.heightfromground }}	{{ value.distfromtrunk }}	{{ value.disttobranchend }}	{{ value.cavitydiam }}	{{ value.branchdiam }}	{{ value.orientation }}	"{{ value.csvnotes }}" {% endfor %}

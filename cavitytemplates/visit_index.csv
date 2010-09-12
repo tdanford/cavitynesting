@@ -1,0 +1,3 @@
+Date	Time	Nest	 Cavity	 Tree	 Plot	 Observer	 Eggs	 Nestlings	 Fledglings	 Fledged Certainty	 Status	 Stage	 Notes
+{% for value in all_values %}
+{{ value.date_only }}	{{ value.time_only }}	{{ value.nest.nestid }}	{{ value.nest.cavity.cavityid }}	{{ value.nest.cavity.tree.treeid }}	{{ value.nest.cavity.tree.plot.plotid }}	{{ value.observerinitials }}	{{ value.eggs }}	{{ value.nestlings }}	{{ value.fledglings }}	{{ value.fledgedcertainty }}	{{ value.status }}	{{ value.stage }}	"{{ value.csvnotes }}"{% endfor %}

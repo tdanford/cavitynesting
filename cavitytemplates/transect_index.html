@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Transect Index{% endblock %}
+
+{% block body %}
+
+<a href="/cavitynesting/">Top Level</a><br>
+
+<p>
+<table>
+<tr>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/plots/">Plots</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/trees/">Trees</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/cavities/">Cavities</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/nests/">Nests</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/visits/">Visits</a>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/randomtrees/">Random Trees</a>
+</td>
+<td bgcolor="pink">
+	<b>Transects</b>
+</td>
+<td bgcolor="#f0f0ff">
+	<a href="/cavitynesting/transecttrees/">Transect Trees</a>
+</td>
+</tr>
+</table>
+</p>
+<hr>
+
+{% if all_values %} 
+
+<h3>Transect List</h3>
+<table>
+<tr>
+<td><b>Number</b></td>
+<td><b>Plot</b></td>
+<td><b>Date</b></td>
+<td><b>Observer</b></td>
+<td><b>Start</b></td>
+<td><b>End</b></td>
+<td><b># Snags</b></td>
+<td><b>Dominant Species</b></td>
+<td><b>Notes</b></td>
+</tr>
+
+{% for value in all_values %}
+<tr>
+<td align=center bgcolor="#e0e0ff"> <a href="/cavitynesting/transect/{{ value.id }}/">#{{ value.transectnumber }}</a></td>
+<td> <a href="/cavitynesting/plot/{{ value.plot.id }}/">{{ value.plot.plotid }}</a></td>
+<td> {{ value.date }} </td>
+<td> {{ value.observerinitials }} </td>
+<td> {{ value.startpoint }} </td>
+<td> {{ value.endpoint }} </td>
+<td> {{ value.numsnags }} </td>
+<td> {{ value.dominantspecies }} </td>
+<td> {{ value.displaynotes }} </td>
+</tr>
+{% endfor %}
+</table>
+
+{% else %} 
+<p>There are currently no transects in the database.</p>
+{% endif %} 
+
+<p><a href="/cavitynesting/transects/?type=csv">CSV</a></p>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Plot-Nest Query{% endblock %}
+
+{% block body %}
+
+<p><a href="/cavitynesting/">Top Level</a></p>
+
+{% if plot_counts %}
+<table>
+<tr><th>Plot</th> <th># Nests</th></tr>
+{% for pcp in plot_counts %}
+<tr>
+<td align="center">
+<a href="/cavitynesting/plot/{{ pcp.0 }}">{{ pcp.1 }}</a></td>
+<td align="center"> {{ pcp.2 }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endif %}
+
+{% endblock %}
+
