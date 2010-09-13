@@ -1,0 +1,12 @@
+
+A Django application, used to run a web-database for data collection and browsing 
+for a project that collects data on cavity-nesting birds.
+
+This was my first attempt at a Django application, over 2+ years ago (~winter of 2008) 
+and it was updated in an ad hoc way over the next year to satisfy the demands of the 
+academic users.  
+
+The code is simple but spaghetti-like in parts -- and there's not as much documentation
+as there needs to be.  But it works, at least in Django 1.0.  
+
+- Tim
